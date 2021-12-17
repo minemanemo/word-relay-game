@@ -9,6 +9,7 @@ export const Title = styled.h1`
 `;
 
 export const Grid = styled.div`
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
