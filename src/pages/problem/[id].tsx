@@ -10,7 +10,10 @@ const Problem = () => {
   const [currentProblem, setCurrentProblem] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const problems = useMemo(() => data?.[id?.toString() || 'undefined'] || [], [id]);
+  const problems = useMemo(
+    () => (data?.[id?.toString() || 'undefined'] || []).sort(() => Math.random() - 0.5),
+    [id]
+  );
   const current = useMemo(
     () => problems[currentProblem]?.split('-') || '',
     [problems, currentProblem]
