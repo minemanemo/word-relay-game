@@ -1,14 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Title, Layout, Content, Button, ButtonGroup } from '@components/common';
+import { Title, Layout, Content, Button, ButtonGroup, Timer } from '@components/common';
 
 import data from '@common/data';
+
+const defaultDelay = 3000;
 
 const Problem = () => {
   const router = useRouter();
   const { id } = router.query;
   const [currentProblem, setCurrentProblem] = useState(0);
   const [open, setOpen] = useState(false);
+  const [delay, setDelay] = useState(defaultDelay);
 
   const problems = useMemo(
     () => (data?.[id?.toString() || 'undefined'] || []).sort(() => Math.random() - 0.5),
@@ -23,21 +26,43 @@ const Problem = () => {
     if (currentProblem !== 0) {
       setOpen(false);
       setCurrentProblem(currentProblem - 1);
+      setDelay(defaultDelay);
     }
   };
   const handleClickNext = () => {
-    if (!open) return setOpen(true);
+    if (!open) {
+      setDelay(0);
+      setOpen(true);
+      return;
+    }
     if (currentProblem + 1 === problems.length) return moveBack();
 
     setOpen(false);
     setCurrentProblem(currentProblem + 1);
+    setDelay(defaultDelay);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => delay > 0 && setDelay(delay - 10 < 0 ? 0 : delay - 10), 10);
+    return () => clearTimeout(timer);
+  }, [delay]);
 
   return (
     <Layout>
       <Title>{`${currentProblem + 1} / ${problems.length}`}</Title>
 
-      <Content>{open ? `${current[0]} ${current[1]}` : current[0]}</Content>
+      <Content>
+        {open ? (
+          `${current[0]} ${current[1]}`
+        ) : delay === 0 ? (
+          '땡!!!'
+        ) : (
+          <>
+            {current[0]}
+            <Timer delay={delay} />
+          </>
+        )}
+      </Content>
 
       <ButtonGroup>
         <Button onClick={handleClickPrev}>← 이전</Button>

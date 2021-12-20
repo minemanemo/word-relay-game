@@ -95,9 +95,18 @@ export const Content = styled.div`
   left: 30px;
   min-height: 300px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   font-size: 4rem;
   font-weight: bold;
 `;
+
+export const TimerText = styled.span`
+  font-size: 2rem;
+`;
+
+export const Timer = ({ delay }: { delay: number }) => (
+  <TimerText>{(delay / 1000).toFixed(2)}</TimerText>
+);
