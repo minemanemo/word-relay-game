@@ -67,6 +67,12 @@ const Problem = () => {
     <Layout>
       <Title>{`${currentProblem + 1} / ${problems.length}`}</Title>
 
+      {id === 'cryOfSilence' && (
+        <div style={{ textAlign: 'center' }}>
+          <Timer delay={delay} />
+        </div>
+      )}
+
       <Content>
         {id !== 'cryOfSilence' ? (
           open ? (
@@ -80,10 +86,7 @@ const Problem = () => {
             </>
           )
         ) : (
-          <>
-            {current[0]}
-            <Timer delay={delay} />
-          </>
+          current[0]
         )}
       </Content>
 
