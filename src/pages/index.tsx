@@ -7,6 +7,7 @@ import practice from '@common/practice';
 import daily from '@common/daily';
 import idiom from '@common/idiom';
 import proverb from '@common/proverb';
+import cryOfSilence from '@common/cry-of-silence';
 
 const Home = () => {
   const router = useRouter();
@@ -27,6 +28,9 @@ const Home = () => {
         </Card>
         <Card id="proverb" onClick={moveProblem}>
           <h2>{`속담(${proverb.length})`}</h2>
+        </Card>
+        <Card id="cryOfSilence" onClick={moveProblem}>
+          <h2>{`고요속의 외침(${cryOfSilence.length})`}</h2>
         </Card>
       </Grid>
     </div>
