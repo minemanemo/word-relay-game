@@ -352,7 +352,7 @@ export const SetupSection = styled.div`
 export const SetupTitle = styled.h2`
   font-size: 1.5rem;
   text-align: center;
-  margin: 0;
+  margin: 1.5rem 0 0;
   color: #333;
 `;
 
