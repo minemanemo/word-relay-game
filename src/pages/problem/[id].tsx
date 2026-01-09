@@ -111,21 +111,29 @@ const Problem = () => {
 
       {id !== 'cryOfSilence' && open && (
         <ButtonGroup style={{ bottom: '80px' }}>
-          <Button onClick={handleSuccess} style={{ background: '#28a745' }}>성공 ✓</Button>
-          <Button onClick={handleFail} style={{ background: '#dc3545' }}>실패 ✗</Button>
+          <Button onClick={handleSuccess} style={{ background: '#28a745' }}>
+            성공 ✓
+          </Button>
+          <Button onClick={handleFail} style={{ background: '#dc3545' }}>
+            실패 ✗
+          </Button>
         </ButtonGroup>
       )}
 
       <ButtonGroup>
         <Button onClick={handleClickPrev}>← 이전</Button>
         <Button onClick={moveBack}>종료</Button>
-        <Button 
+        <Button
           onClick={id !== 'cryOfSilence' && open ? undefined : handleClickNext}
-          style={id !== 'cryOfSilence' && open ? { 
-            background: '#ccc', 
-            cursor: 'not-allowed',
-            boxShadow: 'none'
-          } : undefined}
+          style={
+            id !== 'cryOfSilence' && open
+              ? {
+                  background: '#ccc',
+                  cursor: 'not-allowed',
+                  boxShadow: 'none',
+                }
+              : undefined
+          }
         >
           다음 →
         </Button>

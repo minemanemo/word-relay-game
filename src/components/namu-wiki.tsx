@@ -51,9 +51,10 @@ export const WordBadge = styled.div<{ $type: 'source' | 'destination' }>`
   align-items: center;
   padding: 8px 20px;
   border-radius: 12px;
-  background: ${({ $type }) => $type === 'source'
-    ? 'linear-gradient(135deg, #00d2d3 0%, #54a0ff 100%)'
-    : 'linear-gradient(135deg, #f39c12 0%, #e74c3c 100%)'};
+  background: ${({ $type }) =>
+    $type === 'source'
+      ? 'linear-gradient(135deg, #00d2d3 0%, #54a0ff 100%)'
+      : 'linear-gradient(135deg, #f39c12 0%, #e74c3c 100%)'};
   min-width: 120px;
 `;
 
@@ -73,9 +74,9 @@ export const TimerBox = styled.div<{ $urgent: boolean }>`
   align-items: center;
   gap: 10px;
   padding: 10px 25px;
-  background: ${({ $urgent }) => $urgent ? 'rgba(231, 76, 60, 0.2)' : 'rgba(255, 255, 255, 0.1)'};
+  background: ${({ $urgent }) => ($urgent ? 'rgba(231, 76, 60, 0.2)' : 'rgba(255, 255, 255, 0.1)')};
   border-radius: 15px;
-  border: 2px solid ${({ $urgent }) => $urgent ? '#e74c3c' : 'rgba(255, 255, 255, 0.3)'};
+  border: 2px solid ${({ $urgent }) => ($urgent ? '#e74c3c' : 'rgba(255, 255, 255, 0.3)')};
 `;
 
 export const TimerIcon = styled.span`
@@ -86,10 +87,12 @@ export const TimerText = styled.span<{ $urgent: boolean }>`
   font-size: 2rem;
   font-weight: bold;
   font-family: 'Courier New', monospace;
-  color: ${({ $urgent }) => $urgent ? '#e74c3c' : 'white'};
-  ${({ $urgent }) => $urgent && css`
-    animation: ${urgentPulse} 0.5s ease-in-out infinite;
-  `}
+  color: ${({ $urgent }) => ($urgent ? '#e74c3c' : 'white')};
+  ${({ $urgent }) =>
+    $urgent &&
+    css`
+      animation: ${urgentPulse} 0.5s ease-in-out infinite;
+    `}
 `;
 
 export const PausedTag = styled.span`
@@ -238,24 +241,27 @@ export const JudgeBtn = styled.button<{ $type: 'success' | 'fail' }>`
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  ${({ $type }) => $type === 'success' ? css`
-    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(46, 204, 113, 0.5);
-    }
-  ` : css`
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(231, 76, 60, 0.5);
-    }
-  `}
+
+  ${({ $type }) =>
+    $type === 'success'
+      ? css`
+          background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+          box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.5);
+          }
+        `
+      : css`
+          background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+          box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.5);
+          }
+        `}
 `;
 
 export const PauseBtn = styled.button`
@@ -376,10 +382,10 @@ export const TimeButtons = styled.div`
 
 export const TimeButton = styled.button<{ $selected: boolean }>`
   padding: 10px 18px;
-  border: 2px solid ${({ $selected }) => $selected ? '#54a0ff' : '#ddd'};
+  border: 2px solid ${({ $selected }) => ($selected ? '#54a0ff' : '#ddd')};
   border-radius: 10px;
-  background: ${({ $selected }) => $selected ? '#54a0ff' : 'white'};
-  color: ${({ $selected }) => $selected ? 'white' : '#333'};
+  background: ${({ $selected }) => ($selected ? '#54a0ff' : 'white')};
+  color: ${({ $selected }) => ($selected ? 'white' : '#333')};
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -398,10 +404,10 @@ export const ToggleButtons = styled.div`
 export const ToggleButton = styled.button<{ $selected: boolean }>`
   flex: 1;
   padding: 12px;
-  border: 2px solid ${({ $selected }) => $selected ? '#00d2d3' : '#ddd'};
+  border: 2px solid ${({ $selected }) => ($selected ? '#00d2d3' : '#ddd')};
   border-radius: 10px;
-  background: ${({ $selected }) => $selected ? '#00d2d3' : 'white'};
-  color: ${({ $selected }) => $selected ? 'white' : '#333'};
+  background: ${({ $selected }) => ($selected ? '#00d2d3' : 'white')};
+  color: ${({ $selected }) => ($selected ? 'white' : '#333')};
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -420,26 +426,35 @@ export const DifficultyButtons = styled.div`
 
 export const DifficultyButton = styled.button<{ $selected: boolean; $difficulty: string }>`
   padding: 10px 16px;
-  border: 2px solid ${({ $selected, $difficulty }) => {
-    if (!$selected) return '#ddd';
-    switch($difficulty) {
-      case 'easy': return '#2ecc71';
-      case 'medium': return '#f39c12';
-      case 'hard': return '#e74c3c';
-      default: return '#54a0ff';
-    }
-  }};
+  border: 2px solid
+    ${({ $selected, $difficulty }) => {
+      if (!$selected) return '#ddd';
+      switch ($difficulty) {
+        case 'easy':
+          return '#2ecc71';
+        case 'medium':
+          return '#f39c12';
+        case 'hard':
+          return '#e74c3c';
+        default:
+          return '#54a0ff';
+      }
+    }};
   border-radius: 10px;
   background: ${({ $selected, $difficulty }) => {
     if (!$selected) return 'white';
-    switch($difficulty) {
-      case 'easy': return '#2ecc71';
-      case 'medium': return '#f39c12';
-      case 'hard': return '#e74c3c';
-      default: return '#54a0ff';
+    switch ($difficulty) {
+      case 'easy':
+        return '#2ecc71';
+      case 'medium':
+        return '#f39c12';
+      case 'hard':
+        return '#e74c3c';
+      default:
+        return '#54a0ff';
     }
   }};
-  color: ${({ $selected }) => $selected ? 'white' : '#333'};
+  color: ${({ $selected }) => ($selected ? 'white' : '#333')};
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -537,10 +552,13 @@ export const ResultSection = styled.div<{ $result: 'success' | 'fail' | 'timeout
   border-radius: 25px;
   animation: ${popIn} 0.5s ease-out;
   background: ${({ $result }) => {
-    if ($result === 'success') return 'linear-gradient(135deg, rgba(46, 204, 113, 0.15) 0%, rgba(39, 174, 96, 0.15) 100%)';
+    if ($result === 'success')
+      return 'linear-gradient(135deg, rgba(46, 204, 113, 0.15) 0%, rgba(39, 174, 96, 0.15) 100%)';
     return 'linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, rgba(192, 57, 43, 0.15) 100%)';
   }};
-  border: 3px solid ${({ $result }) => $result === 'success' ? 'rgba(46, 204, 113, 0.5)' : 'rgba(231, 76, 60, 0.5)'};
+  border: 3px solid
+    ${({ $result }) =>
+      $result === 'success' ? 'rgba(46, 204, 113, 0.5)' : 'rgba(231, 76, 60, 0.5)'};
   width: 100%;
   max-width: 400px;
 `;
@@ -548,7 +566,7 @@ export const ResultSection = styled.div<{ $result: 'success' | 'fail' | 'timeout
 export const ResultBadge = styled.div<{ $result: 'success' | 'fail' | 'timeout' | null }>`
   font-size: 2rem;
   font-weight: bold;
-  color: ${({ $result }) => $result === 'success' ? '#2ecc71' : '#e74c3c'};
+  color: ${({ $result }) => ($result === 'success' ? '#2ecc71' : '#e74c3c')};
 `;
 
 export const ResultDetails = styled.div`
@@ -639,13 +657,10 @@ export const WikiWindowStatus = styled.span<{ $isOpen: boolean }>`
   font-weight: bold;
   padding: 4px 12px;
   border-radius: 8px;
-  background: ${({ $isOpen }) => $isOpen 
-    ? 'rgba(46, 204, 113, 0.2)' 
-    : 'rgba(231, 76, 60, 0.2)'};
-  color: ${({ $isOpen }) => $isOpen ? '#2ecc71' : '#e74c3c'};
-  border: 1px solid ${({ $isOpen }) => $isOpen 
-    ? 'rgba(46, 204, 113, 0.3)' 
-    : 'rgba(231, 76, 60, 0.3)'};
+  background: ${({ $isOpen }) => ($isOpen ? 'rgba(46, 204, 113, 0.2)' : 'rgba(231, 76, 60, 0.2)')};
+  color: ${({ $isOpen }) => ($isOpen ? '#2ecc71' : '#e74c3c')};
+  border: 1px solid
+    ${({ $isOpen }) => ($isOpen ? 'rgba(46, 204, 113, 0.3)' : 'rgba(231, 76, 60, 0.3)')};
 `;
 
 // Ready Screen (문제 확인 화면)
@@ -682,14 +697,14 @@ export const ReadyWordItem = styled.div<{ $type: 'source' | 'destination' }>`
   padding: 20px 30px;
   border-radius: 20px;
   min-width: 150px;
-  background: ${({ $type }) => $type === 'source'
-    ? 'linear-gradient(135deg, #00d2d3 0%, #54a0ff 100%)'
-    : 'linear-gradient(135deg, #f39c12 0%, #e74c3c 100%)'};
-  box-shadow: ${({ $type }) => $type === 'source'
-    ? '0 8px 25px rgba(0, 210, 211, 0.4)'
-    : '0 8px 25px rgba(231, 76, 60, 0.4)'};
+  background: ${({ $type }) =>
+    $type === 'source'
+      ? 'linear-gradient(135deg, #00d2d3 0%, #54a0ff 100%)'
+      : 'linear-gradient(135deg, #f39c12 0%, #e74c3c 100%)'};
+  box-shadow: ${({ $type }) =>
+    $type === 'source' ? '0 8px 25px rgba(0, 210, 211, 0.4)' : '0 8px 25px rgba(231, 76, 60, 0.4)'};
   animation: ${popIn} 0.5s ease-out;
-  animation-delay: ${({ $type }) => $type === 'source' ? '0s' : '0.1s'};
+  animation-delay: ${({ $type }) => ($type === 'source' ? '0s' : '0.1s')};
   animation-fill-mode: both;
 `;
 

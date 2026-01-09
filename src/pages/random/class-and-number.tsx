@@ -10,12 +10,12 @@ interface RandomResult {
 const ClassAndNumber = () => {
   const router = useRouter();
   const { maxClass, maxNumber } = router.query;
-  
+
   const maxClassValue = useMemo(() => {
     const parsed = parseInt(maxClass as string, 10);
     return isNaN(parsed) || parsed <= 0 ? 6 : parsed;
   }, [maxClass]);
-  
+
   const maxNumberValue = useMemo(() => {
     const parsed = parseInt(maxNumber as string, 10);
     return isNaN(parsed) || parsed <= 0 ? 36 : parsed;
@@ -66,20 +66,25 @@ const ClassAndNumber = () => {
               {latestResult.classNumber}반 {latestResult.studentNumber}번
             </div>
             <div style={{ fontSize: '1.2rem', color: '#666', marginBottom: '1.5rem' }}>
-              최대 반: {maxClassValue}, 최대 번호: {maxNumberValue} | 남은 조합: {maxClassValue * maxNumberValue - history.length}개
+              최대 반: {maxClassValue}, 최대 번호: {maxNumberValue} | 남은 조합:{' '}
+              {maxClassValue * maxNumberValue - history.length}개
             </div>
-            <div style={{ 
-              maxHeight: '500px', 
-              overflowY: 'auto', 
-              fontSize: '1rem',
-              fontWeight: 'normal'
-            }}>
-              <table style={{ 
-                borderCollapse: 'collapse', 
-                margin: '0 auto',
-                width: '100%',
-                maxWidth: '500px'
-              }}>
+            <div
+              style={{
+                maxHeight: '500px',
+                overflowY: 'auto',
+                fontSize: '1rem',
+                fontWeight: 'normal',
+              }}
+            >
+              <table
+                style={{
+                  borderCollapse: 'collapse',
+                  margin: '0 auto',
+                  width: '100%',
+                  maxWidth: '500px',
+                }}
+              >
                 <thead>
                   <tr style={{ backgroundColor: '#f0f0f0' }}>
                     <th style={{ border: '1px solid #ddd', padding: '8px', width: '33%' }}>순번</th>
@@ -89,12 +94,19 @@ const ClassAndNumber = () => {
                 </thead>
                 <tbody>
                   {history.map((item, index) => (
-                    <tr key={index} style={{ 
-                      backgroundColor: index === history.length - 1 ? '#e6f3ff' : 'white'
-                    }}>
+                    <tr
+                      key={index}
+                      style={{
+                        backgroundColor: index === history.length - 1 ? '#e6f3ff' : 'white',
+                      }}
+                    >
                       <td style={{ border: '1px solid #ddd', padding: '8px' }}>{index + 1}</td>
-                      <td style={{ border: '1px solid #ddd', padding: '8px' }}>{item.classNumber}반</td>
-                      <td style={{ border: '1px solid #ddd', padding: '8px' }}>{item.studentNumber}번</td>
+                      <td style={{ border: '1px solid #ddd', padding: '8px' }}>
+                        {item.classNumber}반
+                      </td>
+                      <td style={{ border: '1px solid #ddd', padding: '8px' }}>
+                        {item.studentNumber}번
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -102,9 +114,7 @@ const ClassAndNumber = () => {
             </div>
           </div>
         ) : (
-          <div style={{ fontSize: '2rem', color: '#999' }}>
-            버튼을 눌러 랜덤 값을 추출하세요
-          </div>
+          <div style={{ fontSize: '2rem', color: '#999' }}>버튼을 눌러 랜덤 값을 추출하세요</div>
         )}
       </Content>
 
