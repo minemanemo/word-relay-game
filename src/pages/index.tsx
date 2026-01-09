@@ -12,6 +12,7 @@ import cryOfSilence from '@common/cry-of-silence';
 const Home = () => {
   const router = useRouter();
   const moveProblem = (e: React.SyntheticEvent) => router.push(`/problem/${e.currentTarget.id}`);
+  const moveRandom = (e: React.SyntheticEvent) => router.push(`/random/${e.currentTarget.id}`);
   return (
     <div>
       <Title>단어 이어 말하기 게임</Title>
@@ -31,6 +32,9 @@ const Home = () => {
         </Card>
         <Card id="cryOfSilence" onClick={moveProblem}>
           <h2>{`고요속의 외침(${cryOfSilence.length})`}</h2>
+        </Card>
+        <Card id="class-and-number" onClick={moveRandom}>
+          <h2>랜덤 반 및 번호 선택</h2>
         </Card>
       </Grid>
     </div>
