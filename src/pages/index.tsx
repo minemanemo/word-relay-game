@@ -13,9 +13,10 @@ const Home = () => {
   const router = useRouter();
   const moveProblem = (e: React.SyntheticEvent) => router.push(`/problem/${e.currentTarget.id}`);
   const moveRandom = (e: React.SyntheticEvent) => router.push(`/random/${e.currentTarget.id}`);
+  const moveQuiz = (e: React.SyntheticEvent) => router.push(`/quiz/${e.currentTarget.id}`);
   return (
     <div>
-      <Title>단어 이어 말하기 게임</Title>
+      <Title>MINEMANEMO 게임 모음</Title>
 
       <Grid>
         <Card id="practice" onClick={moveProblem}>
@@ -35,6 +36,12 @@ const Home = () => {
         </Card>
         <Card id="class-and-number" onClick={moveRandom}>
           <h2>랜덤 반 및 번호 선택</h2>
+        </Card>
+        {/* <Card id="movie-sound" onClick={moveRandom}>
+          <h2>🎬 영화 명대사 맞추기</h2>
+        </Card> */}
+        <Card id="namu-wiki" onClick={moveQuiz}>
+          <h2>📚 나무위키 퀴즈</h2>
         </Card>
       </Grid>
     </div>
