@@ -81,7 +81,7 @@ const Problem = () => {
             '땡!!!'
           ) : (
             <>
-              {current[0]}
+              {current[0]} {current[1] ? current[1].replace(/[^\s]/g, 'ㅇ') : ''}
               <Timer delay={delay} />
             </>
           )
