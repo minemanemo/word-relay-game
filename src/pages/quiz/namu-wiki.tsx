@@ -162,7 +162,7 @@ const NamuWikiQuiz = () => {
 
   const [timeLimit, setTimeLimit] = useState(60);
   const [timeLeft, setTimeLeft] = useState(60);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [successCount, setSuccessCount] = useState(0);
   const [failCount, setFailCount] = useState(0);
