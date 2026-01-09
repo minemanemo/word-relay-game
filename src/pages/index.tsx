@@ -37,11 +37,11 @@ const Home = () => {
         <Card id="class-and-number" onClick={moveRandom}>
           <h2>랜덤 반 및 번호 선택</h2>
         </Card>
-        {/* <Card id="movie-sound" onClick={moveRandom}>
+        <Card id="movie-sound" onClick={moveRandom}>
           <h2>🎬 영화 명대사 맞추기</h2>
-        </Card> */}
+        </Card>
         <Card id="namu-wiki" onClick={moveQuiz}>
-          <h2>📚 나무위키 퀴즈</h2>
+          <h2>📚 나무위키 파도타기</h2>
         </Card>
       </Grid>
     </div>
