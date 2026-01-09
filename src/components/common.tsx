@@ -64,6 +64,7 @@ export const Button = styled.a`
   touch-action: pan-y;
   transition: opacity 0.5s;
   opacity: 1;
+  font-size: 1.2rem;
   &:hover {
     opacity: 0.8;
   }

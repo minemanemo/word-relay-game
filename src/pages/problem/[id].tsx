@@ -14,6 +14,7 @@ const Problem = () => {
   const basicTimerDelay = id === 'cryOfSilence' ? globalTimers : defaultDelay;
   const [open, setOpen] = useState(false);
   const [delay, setDelay] = useState(basicTimerDelay);
+  const [successCount, setSuccessCount] = useState(0);
 
   const problems = useMemo(
     () => (data?.[id?.toString() || 'undefined'] || []).sort(() => Math.random() - 0.5),
@@ -47,15 +48,26 @@ const Problem = () => {
         setOpen(true);
         return;
       }
-      if (currentProblem + 1 === problems.length) return moveBack();
-
-      setOpen(false);
-      setCurrentProblem(currentProblem + 1);
-      setDelay(basicTimerDelay);
     } else {
       if (currentProblem + 1 === problems.length) return moveBack();
       setCurrentProblem(currentProblem + 1);
     }
+  };
+
+  const goToNextProblem = () => {
+    if (currentProblem + 1 === problems.length) return moveBack();
+    setOpen(false);
+    setCurrentProblem(currentProblem + 1);
+    setDelay(basicTimerDelay);
+  };
+
+  const handleSuccess = () => {
+    setSuccessCount(successCount + 1);
+    goToNextProblem();
+  };
+
+  const handleFail = () => {
+    goToNextProblem();
   };
 
   useEffect(() => {
@@ -65,7 +77,14 @@ const Problem = () => {
 
   return (
     <Layout>
-      <Title>{`${currentProblem + 1} / ${problems.length}`}</Title>
+      <Title>
+        {`${currentProblem + 1} / ${problems.length}`}
+        {id !== 'cryOfSilence' && (
+          <span style={{ fontSize: '1.5rem', marginLeft: '1rem', color: '#0070f3' }}>
+            (성공: {successCount}개)
+          </span>
+        )}
+      </Title>
 
       {id === 'cryOfSilence' && (
         <div style={{ textAlign: 'center' }}>
@@ -90,10 +109,26 @@ const Problem = () => {
         )}
       </Content>
 
+      {id !== 'cryOfSilence' && open && (
+        <ButtonGroup style={{ bottom: '80px' }}>
+          <Button onClick={handleSuccess} style={{ background: '#28a745' }}>성공 ✓</Button>
+          <Button onClick={handleFail} style={{ background: '#dc3545' }}>실패 ✗</Button>
+        </ButtonGroup>
+      )}
+
       <ButtonGroup>
         <Button onClick={handleClickPrev}>← 이전</Button>
         <Button onClick={moveBack}>종료</Button>
-        <Button onClick={handleClickNext}>다음 →</Button>
+        <Button 
+          onClick={id !== 'cryOfSilence' && open ? undefined : handleClickNext}
+          style={id !== 'cryOfSilence' && open ? { 
+            background: '#ccc', 
+            cursor: 'not-allowed',
+            boxShadow: 'none'
+          } : undefined}
+        >
+          다음 →
+        </Button>
       </ButtonGroup>
     </Layout>
   );
